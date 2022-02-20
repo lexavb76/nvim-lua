@@ -42,7 +42,7 @@ local ret = packer.startup({
                 -- setup function must go the last:
                 require('nvim-tree').setup {
                     hijack_cursor = true,                    -- Keeps the cursor on the first letter of the filename
-                    update_cwd = true,                       -- changes the tree root directory on `DirChanged` and refreshes
+                    update_cwd = true,                       -- Changes the tree root directory on `DirChanged` and refreshes
                     update_focused_file = {                  -- Update the focused file on `BufEnter`, un-collapses the folders recursively until it finds the file
                         enable      = true,
                         update_cwd  = true,                  -- Update the root directory of the tree to the one of the folder containing the file
