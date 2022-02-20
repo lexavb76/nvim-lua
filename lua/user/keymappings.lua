@@ -70,6 +70,7 @@ map("t", "<C-h>", "<C-\\><C-n><C-w>h", term_opts) -- Windows navigation
 map("t", "<C-j>", "<C-\\><C-n><C-w>j", term_opts)
 map("t", "<C-k>", "<C-\\><C-n><C-w>k", term_opts)
 map("t", "<C-l>", "<C-\\><C-n><C-w>l", term_opts)
-map("n", "<A-C-j>", "<C-\\><C-n>:bnext<CR>",    term_opts)
-map("n", "<A-C-k>", "<C-\\><C-n>:bprevious<CR>",term_opts)
-
+map("t", "<A-C-j>", "<C-\\><C-n>:bnext<CR>",     term_opts)
+map("t", "<A-C-k>", "<C-\\><C-n>:bprevious<CR>", term_opts)
+map("t", "<A-k>", "<C-\\><C-n>:tabnext<CR>",     term_opts)
+map("t", "<A-j>", "<C-\\><C-n>:tabprevious<CR>", term_opts)
