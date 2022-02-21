@@ -45,12 +45,12 @@ map("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 map("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
 -- Navigate buffers
-map("n", "<A-C-j>", ":bnext<CR>", opts)
-map("n", "<A-C-k>", ":bprevious<CR>", opts)
+map("n", "<A-j>", ":bnext<CR>", opts)
+map("n", "<A-k>", ":bprevious<CR>", opts)
 
 -- Navigate tabs
-map("n", "<A-k>", ":tabnext<CR>", opts)
-map("n", "<A-j>", ":tabprevious<CR>", opts)
+map("n", "<A-C-k>", ":tabnext<CR>", opts)
+map("n", "<A-C-j>", ":tabprevious<CR>", opts)
 
 -- Visual --
 -- Stay in indent mode

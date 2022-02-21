@@ -1,4 +1,5 @@
 --print('In plugins.lua...')
+_M = {}
 local packer = require('packer')
 package.loaded['user.packer_init'] = nil
 require('user.packer_init')
@@ -11,22 +12,23 @@ local ret = packer.startup({
 
         local font_location = '~/.local/share/fonts' -- Don't change it
         local font_family = 'Hack'
-        local install_font_cmd = 'mkdir -p '..font_location..' && '..default_packages_root..'/opt/nerd-fonts/install '..font_family
+        --Have to use auxiliary namespace _M to get into the internal function scope. Local variables do not work.
+        _M.install_font_cmd = 'mkdir -p '..font_location..' && '..default_packages_root..'/start/nerd-fonts/install.sh '..font_family
         use {
             'kyazdani42/nvim-tree.lua',
             requires = {
                 ---[[
                 {
                     'ryanoasis/nerd-fonts',
-                    opt = true,
+                    opt = false,
                     tag = 'v*',
-                    -- TODO: config and run commands do not work properly
-                    -- installed fonts manually:
-                    --  ~/.local/share/nvim/site/pack/packer/opt/nerd-fonts/install.sh  Hack
+                    -- You may install fonts manually:
+                    --  ~/.local/share/nvim/site/pack/packer/start/nerd-fonts/install.sh  Hack
                     config = function()
-                        vim.fn.system({ 'bash', '-c', install_font_cmd })
+                        vim.fn.system({ 'bash', '-c', _M.install_font_cmd })
+                        --vim.cmd('!'.._M.install_font_cmd..' --help' ) -- Just the way to get the list of all font_family. Uncomment if needed.
                     end,
-                    run = install_font_cmd,
+                    run = 'echo Install nerd fonts: && '.._M.install_font_cmd,
                 },
                 --]]
                 {
