@@ -34,12 +34,12 @@ local options = {
     expandtab = true,                        -- convert tabs to spaces
     shiftwidth = 4,                          -- the number of spaces inserted for each indentation
     tabstop = 4,                             -- insert 2 spaces for a tab
+    wrap = false,                            -- display lines as one long line
+    scrolloff = 8,                           -- Minimal number of screen lines to keep above and below the cursor.
     number = true,                           -- set numbered lines
     relativenumber = false,                  -- set relative numbered lines
     numberwidth = 5,                         -- set number column width {default 4}
     signcolumn = "yes",                      -- always show the sign column (on the very left side), otherwise it would shift the text each time
-    wrap = false,                            -- display lines as one long line
-    scrolloff = 8,                           -- Minimal number of screen lines to keep above and below the cursor.
     sidescrolloff = 8,                       -- Minimal number of columns to keep left and right of the cursor.
     termguicolors = true,                    -- set term gui colors (most terminals support this)
     guifont = "monospace:h12",               -- the font used in graphical neovim applications "font_name:size"
@@ -51,3 +51,4 @@ end
 vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd [[set iskeyword+=-]]                 -- '-' now is not a terminal symbol, for example, asdf_asdf is treated as a single word
 vim.cmd [[set formatoptions-=cro]]
+vim.cmd [[colorscheme desert]]               -- Set you favourite colorscheme here as default from base set
