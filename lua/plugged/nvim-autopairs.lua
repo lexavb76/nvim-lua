@@ -20,7 +20,7 @@ npairs.setup {
     },
 }
 
--- Setup nvim-cmp.
+-- 'Setup nvim-cmp.
 local cmp_status_ok, cmp_autopairs = pcall(require, "nvim-autopairs.completion.cmp")
 if cmp_status_ok then
     local cmp

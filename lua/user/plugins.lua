@@ -25,9 +25,10 @@ local ret = packer.startup({
         use { "windwp/nvim-autopairs",      -- Autopairs, integrates with both cmp and treesitter
             config = function() require('plugged.nvim-autopairs') end
         }
-        --[[
-        use "numToStr/Comment.nvim"         -- Easily comment stuff
-        --]]
+        use { "numToStr/Comment.nvim",      -- Easily comment stuff
+            requires = "JoosepAlviste/nvim-ts-context-commentstring",
+            config = function() require('plugged.comment') end
+        }
         use { 'kyazdani42/nvim-tree.lua',   -- Filesystem explorer
             requires = {
                 { 'ryanoasis/nerd-fonts',   -- It is not a plugin actually just fonts with glyphs
