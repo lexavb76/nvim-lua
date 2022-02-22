@@ -22,7 +22,7 @@ vim.g.tokyonight_sidebars = {             -- Set a darker background on sidebar-
 }
 -- Change the "hint" color to the "orange" color, and make the "error" color bright red
 vim.g.tokyonight_colors = { hint = "orange", error = "#ff0000" }
+vim.g.tokyonight_hide_inactive_statusline = true
 --]]
-
 -- Load the colorscheme
 vim.cmd[[colorscheme tokyonight]]

@@ -122,9 +122,11 @@ require('nvim-tree').setup {
                 -- key = table of strings or string,
                 -- mode = string (vim-mode),
                 -- cb = callback function as a string
-                { key = { "l", "<CR>", "o" }, cb = tree_cb "edit" },
+                { key = { "l", }, cb = tree_cb "edit" },
+                { key = { "<CR>", }, cb = tree_cb "edit_no_picker" },
                 { key = "h", cb = tree_cb "toggle_help" },
-                { key = "L", cb = tree_cb "cd" },
+                { key = "O", cb = tree_cb "cd" },
+                { key = "o", cb = tree_cb "preview" },
             },
         },
         number = false,

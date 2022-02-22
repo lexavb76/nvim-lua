@@ -37,6 +37,8 @@ map("n", "<C-h>", "<C-w>h", opts)
 map("n", "<C-j>", "<C-w>j", opts)
 map("n", "<C-k>", "<C-w>k", opts)
 map("n", "<C-l>", "<C-w>l", opts)
+map("n", "<C-c>", "<C-w>c", opts)
+map("n", "<C- >", "<C-w>w", opts)
 
 -- Resize with arrows
 map("n", "<C-Up>", ":resize -2<CR>", opts)
@@ -45,12 +47,12 @@ map("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 map("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
 -- Navigate buffers
-map("n", "<S-l>", ":bnext<CR>", opts)
-map("n", "<S-h>", ":bprevious<CR>", opts)
+map("n", "<A-j>", ":bnext<CR>", opts)
+map("n", "<A-k>", ":bprevious<CR>", opts)
 
 -- Navigate tabs
-map("n", "<A-k>", ":tabnext<CR>", opts)
-map("n", "<A-j>", ":tabprevious<CR>", opts)
+map("n", "<A-C-j>", ":tabnext<CR>", opts)
+map("n", "<A-C-k>", ":tabprevious<CR>", opts)
 
 -- Visual --
 -- Stay in indent mode
@@ -70,7 +72,7 @@ map("t", "<C-h>", "<C-\\><C-n><C-w>h", term_opts) -- Windows navigation
 map("t", "<C-j>", "<C-\\><C-n><C-w>j", term_opts)
 map("t", "<C-k>", "<C-\\><C-n><C-w>k", term_opts)
 map("t", "<C-l>", "<C-\\><C-n><C-w>l", term_opts)
-map("t", "<A-C-j>", "<C-\\><C-n>:bnext<CR>",     term_opts)
-map("t", "<A-C-k>", "<C-\\><C-n>:bprevious<CR>", term_opts)
-map("t", "<A-k>", "<C-\\><C-n>:tabnext<CR>",     term_opts)
-map("t", "<A-j>", "<C-\\><C-n>:tabprevious<CR>", term_opts)
+map("t", "<A-j>", "<C-\\><C-n>:bnext<CR>",     term_opts)
+map("t", "<A-k>", "<C-\\><C-n>:bprevious<CR>", term_opts)
+map("t", "<A-C-j>", "<C-\\><C-n>:tabnext<CR>",     term_opts)
+map("t", "<A-C-k>", "<C-\\><C-n>:tabprevious<CR>", term_opts)
