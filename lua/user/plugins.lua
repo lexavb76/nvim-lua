@@ -5,6 +5,7 @@ package.loaded['user.packer_init'] = nil
 require('user.packer_init')  -- All packer plugin configuration
 local ret = packer.startup({
     function(use) -- My plugins here:
+        -- default_packages_root = ~/.local/share/nvim/site/pack/packer'
         -----------------------------------------------------------------------------------------------------------
         local font_location = '~/.local/share/fonts' -- Don't change it
         local font_family = 'Hack'
@@ -20,8 +21,11 @@ local ret = packer.startup({
         }
         -----------------------------------------------------------------------------------------------------------
         -- Ordinary plugins there:
+
+        use { "windwp/nvim-autopairs",      -- Autopairs, integrates with both cmp and treesitter
+            config = function() require('plugged.nvim-autopairs') end
+        }
         --[[
-        use "windwp/nvim-autopairs"         -- Autopairs, integrates with both cmp and treesitter
         use "numToStr/Comment.nvim"         -- Easily comment stuff
         --]]
         use { 'kyazdani42/nvim-tree.lua',   -- Filesystem explorer
