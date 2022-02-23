@@ -71,6 +71,11 @@ set termguicolors " this variable must be enabled for colors to be applied prope
 highlight NvimTreeFolderIcon guibg=blue
 --]]
 
+-- Keymappings:
+local map = vim.api.nvim_set_keymap
+local opts = { noremap = true, silent = true }
+map('n', '<Leader>e', ':NvimTreeToggle<CR>', opts) --Toggle file tree
+--------------------------------------------------------------------------------
 vim.g.nvim_tree_highlight_opened_files = 3   -- Enable highligting for folders and both file icons and names.
 vim.g.nvim_tree_disable_window_picker = 1    -- Don't pick windows when opens new file
 vim.g.nvim_tree_git_hl = 1                   -- Enable file highlight for git attributes by setting this property.
@@ -122,11 +127,12 @@ require('nvim-tree').setup {
                 -- key = table of strings or string,
                 -- mode = string (vim-mode),
                 -- cb = callback function as a string
-                { key = { "l", }, cb = tree_cb "edit" },
-                { key = { "<CR>", }, cb = tree_cb "edit_no_picker" },
+                { key = { "l", "<CR>" }, cb = tree_cb "edit" },
+                { key = "<C-CR>", cb = tree_cb "edit_no_picker" },
                 { key = "h", cb = tree_cb "toggle_help" },
                 { key = "O", cb = tree_cb "cd" },
                 { key = "o", cb = tree_cb "preview" },
+                { key = "v", cb = tree_cb "vsplit" },
             },
         },
         number = false,
