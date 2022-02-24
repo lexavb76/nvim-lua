@@ -6,19 +6,19 @@ require('user.packer_init')  -- All packer plugin configuration
 local ret = packer.startup({
     function(use) -- My plugins here:
         -- default_packages_root = ~/.local/share/nvim/site/pack/packer'
-        -----------------------------------------------------------------------------------------------------------
+
+        -- !!! Never disable !!! ----------------------------------------------------------------------------------
+        use 'wbthomason/packer.nvim'      -- Packer can manage itself: https://github.com/wbthomason/packer.nvim
+        use "nvim-lua/popup.nvim"         -- An implementation of the Popup API from vim in Neovim
+        use "nvim-lua/plenary.nvim"       -- Useful lua functions used by lots of plugins
+                    -- Set up patched fonts with glyphs --
         local font_location = '~/.local/share/fonts' -- Don't change it
         local font_family = 'Hack'
         --Have to use auxiliary namespace _M to get into the internal function scope. Local variables do not work.
         _M.install_font_cmd = 'mkdir -p '..font_location..' && '..default_packages_root..'/start/nerd-fonts/install.sh '..font_family
-
-        -- !!! Never disable !!! ----------------------------------------------------------------------------------
-        use 'wbthomason/packer.nvim'      -- Packer can manage itself: https://github.com/wbthomason/packer.nvim
-        use "nvim-lua/plenary.nvim"       -- Useful lua functions used by lots of plugins
-        use "nvim-lua/popup.nvim"         -- An implementation of the Popup API from vim in Neovim
         use { 'ryanoasis/nerd-fonts',     -- It is not a plugin actually just fonts with glyphs
             opt = false,
-            tag = 'v*',
+            tag = 'v*', -- The last tag, matching wildcard 'v*'
             -- You may install fonts manually:
             --  ~/.local/share/nvim/site/pack/packer/start/nerd-fonts/install.sh  Hack
             config = function()  --  Is called every time you load the plugin
@@ -45,9 +45,7 @@ local ret = packer.startup({
         }
         use { 'kyazdani42/nvim-tree.lua',   -- Filesystem explorer
             disable = false,
-            requires = {
-                'kyazdani42/nvim-web-devicons', -- optional, for file icons
-            },
+            requires = 'kyazdani42/nvim-web-devicons', -- optional, for file icons
             config = function() local plug = 'plugged.nvim-tree'
                 package.loaded[plug] = nil -- force to reload plugin to reread user keymappins
                 require(plug)
@@ -68,8 +66,24 @@ local ret = packer.startup({
             end,
             run = ':TSUpdate'
         }
-
-        -- --------------------------------------------------------------------------------
+        -- use { "saadparwaiz1/cmp_luasnip", --snippet engine
+        use { "L3MON4D3/LuaSnip", --snippet engine
+            requires = {
+                "rafamadriz/friendly-snippets", -- a bunch of snippets to use
+                { "hrsh7th/nvim-cmp", -- The completion plugin
+                    requires = {
+                        "hrsh7th/cmp-buffer", -- buffer completions
+                        "hrsh7th/cmp-path",-- path completions
+                        "hrsh7th/cmp-cmdline", -- cmdline completions
+                    },
+                    config = function() local plug = 'plugged.nvim-cmp'
+                        package.loaded[plug] = nil -- force to reload plugin to reread user keymappins
+                        require(plug)
+                    end,
+                }
+            }
+        }
+        -----------------------------------------------------------------------------------------------------------
         if packer_bootstrap then
             packer.sync()
         end
