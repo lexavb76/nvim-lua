@@ -9,8 +9,8 @@ local ret = packer.startup({
 
         -- !!! Never disable !!! ----------------------------------------------------------------------------------
         use 'wbthomason/packer.nvim'      -- Packer can manage itself: https://github.com/wbthomason/packer.nvim
-        use "nvim-lua/popup.nvim"         -- An implementation of the Popup API from vim in Neovim
-        use "nvim-lua/plenary.nvim"       -- Useful lua functions used by lots of plugins
+        use 'nvim-lua/popup.nvim'         -- An implementation of the Popup API from vim in Neovim
+        use 'nvim-lua/plenary.nvim'       -- Useful lua functions used by lots of plugins
                     -- Set up patched fonts with glyphs --
         local font_location = '~/.local/share/fonts' -- Don't change it
         local font_family = 'Hack'
@@ -30,14 +30,14 @@ local ret = packer.startup({
         -----------------------------------------------------------------------------------------------------------
         -- Ordinary plugins there:
 
-        use { "windwp/nvim-autopairs",      -- Autopairs, integrates with both cmp and treesitter
+        use { 'windwp/nvim-autopairs',      -- Autopairs, integrates with both cmp and treesitter
             config = function() local plug = 'plugged.nvim-autopairs'
                 package.loaded[plug] = nil -- Force to reload plugin to reread user keymappins
                 require(plug)
             end
         }
-        use { "numToStr/Comment.nvim",      -- Easily comment stuff
-            requires = "JoosepAlviste/nvim-ts-context-commentstring",
+        use { 'numToStr/Comment.nvim',      -- Easily comment stuff
+            requires = 'JoosepAlviste/nvim-ts-context-commentstring',
             config = function() local plug = 'plugged.comment'
                 package.loaded[plug] = nil -- force to reload plugin to reread user keymappins
                 require(plug)
@@ -66,22 +66,32 @@ local ret = packer.startup({
             end,
             run = ':TSUpdate'
         }
-        use { "hrsh7th/nvim-cmp", -- The completion plugin
+        use { 'hrsh7th/nvim-cmp', -- The completion plugin
             requires = {
-                { "L3MON4D3/LuaSnip", --snippet engine
-                    requires = "rafamadriz/friendly-snippets", -- a bunch of snippets to use
+                { 'L3MON4D3/LuaSnip', --snippet engine
+                    requires = 'rafamadriz/friendly-snippets', -- a bunch of snippets to use
                 },
-                { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' },
+                { 'saadparwaiz1/cmp_luasnip', -- API between cmp_luasnip and nvim-cmp
+                    after = 'nvim-cmp' -- Is loaded after nvim-cmp
+                    -- opt = true, -- Is implied if 'after' field is not nil
+                },
                 { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' }, -- buffer completions
                 { 'hrsh7th/cmp-path', after = 'nvim-cmp' }, -- path completions
                 { 'hrsh7th/cmp-cmdline', after = 'nvim-cmp' }, -- cmdline completions
-                { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' },
+                { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' }, -- nvim-cmp source for neovim Lua API
+                { 'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp' }, -- LSP completion
                 -- { 'hrsh7th/cmp-nvim-lsp-document-symbol', after = 'nvim-cmp' },
-                -- 'hrsh7th/cmp-nvim-lsp',
                 -- 'hrsh7th/cmp-nvim-lsp-signature-help',
                 -- 'lukas-reineke/cmp-under-comparator',
             },
             config = function() local plug = 'plugged.nvim-cmp'
+                package.loaded[plug] = nil -- force to reload plugin to reread user keymappins
+                require(plug)
+            end,
+        }
+        use 'neovim/nvim-lspconfig' -- enable LSP
+        use { 'williamboman/nvim-lsp-installer', after = 'nvim-lspconfig', -- simple to use language server installer
+            config = function() local plug = 'plugged.lsp.lsp-installer'
                 package.loaded[plug] = nil -- force to reload plugin to reread user keymappins
                 require(plug)
             end,
@@ -93,3 +103,4 @@ local ret = packer.startup({
     end,
 })
 return ret
+

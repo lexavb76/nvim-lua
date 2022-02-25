@@ -36,7 +36,7 @@ comment.setup {
     },
 
     ---LHS of operator-pending mappings in VISUAL mode
-    ---@type --[[ table ]]
+    ---@type table
     opleader = {
         ---Line-comment keymap
         line = 'gc',
@@ -71,11 +71,11 @@ comment.setup {
     },
 
     ---Post-hook, called after commenting is done
-    ---@type fun(ctx: Ctx)
+    ---@type fun(ctx)
     post_hook = nil,
 
     ---Pre-hook, called before commenting the line
-    ---@type fun(ctx: Ctx):string
+    ---@type fun(ctx):string
     -- Treesitter hooks:
     --------------------------------------------------------------------------------
     pre_hook = function(ctx) -- nil by default
