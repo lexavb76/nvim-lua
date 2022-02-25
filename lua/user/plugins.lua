@@ -66,22 +66,25 @@ local ret = packer.startup({
             end,
             run = ':TSUpdate'
         }
-        -- use { "saadparwaiz1/cmp_luasnip", --snippet engine
-        use { "L3MON4D3/LuaSnip", --snippet engine
+        use { "hrsh7th/nvim-cmp", -- The completion plugin
             requires = {
-                "rafamadriz/friendly-snippets", -- a bunch of snippets to use
-                { "hrsh7th/nvim-cmp", -- The completion plugin
-                    requires = {
-                        "hrsh7th/cmp-buffer", -- buffer completions
-                        "hrsh7th/cmp-path",-- path completions
-                        "hrsh7th/cmp-cmdline", -- cmdline completions
-                    },
-                    config = function() local plug = 'plugged.nvim-cmp'
-                        package.loaded[plug] = nil -- force to reload plugin to reread user keymappins
-                        require(plug)
-                    end,
-                }
-            }
+                { "L3MON4D3/LuaSnip", --snippet engine
+                    requires = "rafamadriz/friendly-snippets", -- a bunch of snippets to use
+                },
+                { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' },
+                { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' }, -- buffer completions
+                { 'hrsh7th/cmp-path', after = 'nvim-cmp' }, -- path completions
+                { 'hrsh7th/cmp-cmdline', after = 'nvim-cmp' }, -- cmdline completions
+                { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' },
+                -- { 'hrsh7th/cmp-nvim-lsp-document-symbol', after = 'nvim-cmp' },
+                -- 'hrsh7th/cmp-nvim-lsp',
+                -- 'hrsh7th/cmp-nvim-lsp-signature-help',
+                -- 'lukas-reineke/cmp-under-comparator',
+            },
+            config = function() local plug = 'plugged.nvim-cmp'
+                package.loaded[plug] = nil -- force to reload plugin to reread user keymappins
+                require(plug)
+            end,
         }
         -----------------------------------------------------------------------------------------------------------
         if packer_bootstrap then

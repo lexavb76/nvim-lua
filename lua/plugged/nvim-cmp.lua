@@ -103,7 +103,7 @@ cmp.setup {
     },
     sources = {
         -- { name = "nvim_lsp" },
-        { name = "luasnip" },
+        { name = "luasnip", options = { use_show_condition = false }  },
         { name = "buffer" },
         { name = "path" },
     },
@@ -115,7 +115,19 @@ cmp.setup {
         border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
     },
     experimental = {
-        ghost_text = false,
+        ghost_text = true,
         native_menu = false,
     },
 }
+
+cmp.setup.cmdline(':', {
+    sources = {
+        { name = 'cmdline' }
+    }
+})
+
+cmp.setup.cmdline('/', {
+    sources = {
+        { name = 'buffer' }
+    }
+})
