@@ -63,15 +63,3 @@ map("v", "L", ">gv", opts)
 --map("v", "p", '"_dP', opts)
 map("v", "J", ":move '>+1<CR>gv-gv", opts) -- Move text up and down
 map("v", "K", ":move '<-2<CR>gv-gv", opts)
-
--- Terminal --
--- Better terminal navigation
-map('t', '<Esc>', '<C-\\><C-n>',       term_opts) -- ESC exit to normal mode in terminal
-map("t", "<C-h>", "<C-\\><C-n><C-w>h", term_opts) -- Windows navigation
-map("t", "<C-j>", "<C-\\><C-n><C-w>j", term_opts)
-map("t", "<C-k>", "<C-\\><C-n><C-w>k", term_opts)
-map("t", "<C-l>", "<C-\\><C-n><C-w>l", term_opts)
-map("t", "<A-j>", "<C-\\><C-n>:bnext<CR>",     term_opts)
-map("t", "<A-k>", "<C-\\><C-n>:bprevious<CR>", term_opts)
-map("t", "<A-C-j>", "<C-\\><C-n>:tabnext<CR>",     term_opts)
-map("t", "<A-C-k>", "<C-\\><C-n>:tabprevious<CR>", term_opts)

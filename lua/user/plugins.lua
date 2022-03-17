@@ -96,6 +96,12 @@ local ret = packer.startup({
                 require(plug)
             end,
         }
+        use { "akinsho/toggleterm.nvim", -- Terminal
+            config = function() local plug = 'plugged.toggleterm'
+                package.loaded[plug] = nil -- force to reload plugin to reread user keymappins
+                require(plug)
+            end,
+        }
         -----------------------------------------------------------------------------------------------------------
         if packer_bootstrap then
             packer.sync()
