@@ -112,6 +112,13 @@ local ret = packer.startup({
             run = ':checkhealth telescope', -- Run install script after install/update only
 
         }
+        use { "ahmedkhalf/project.nvim", -- Extention for telescope for project management
+            after = 'telescope.nvim',
+            config = function() local plug = 'plugged.project'
+                package.loaded[plug] = nil -- force to reload plugin to reread user keymappins
+                require(plug)
+            end,
+        }
         -----------------------------------------------------------------------------------------------------------
         if packer_bootstrap then
             packer.sync()
