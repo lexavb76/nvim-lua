@@ -74,7 +74,7 @@ highlight NvimTreeFolderIcon guibg=blue
 -- Keymappings:
 local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
-map('n', '<Leader>e', ':NvimTreeToggle<CR>', opts) --Toggle file tree
+map('n', '<Leader>e', ':NvimTreeToggle<CR> | :NvimTreeRefresh<CR>', opts) --Toggle file tree
 --------------------------------------------------------------------------------
 vim.g.nvim_tree_highlight_opened_files = 3   -- Enable highligting for folders and both file icons and names.
 vim.g.nvim_tree_disable_window_picker = 1    -- Don't pick windows when opens new file
