@@ -9,6 +9,12 @@ local ret = packer.startup({
 
         -- !!! Never disable !!! ----------------------------------------------------------------------------------
         use 'wbthomason/packer.nvim'      -- Packer can manage itself: https://github.com/wbthomason/packer.nvim
+        use { 'lewis6991/impatient.nvim', -- Speed up modules loading time
+            config = function() local plug = 'impatient'
+                package.loaded[plug] = nil -- Force to reload plugin to reread user keymappins
+                require(plug).enable_profile()
+            end
+        }
         use 'nvim-lua/popup.nvim'         -- An implementation of the Popup API from vim in Neovim
         use 'nvim-lua/plenary.nvim'       -- Useful lua functions used by lots of plugins
                     -- Set up patched fonts with glyphs --
