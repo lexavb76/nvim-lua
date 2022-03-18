@@ -29,7 +29,7 @@ vim.g.maplocalleader = " "
 map('n', '<Leader><Esc><Esc>', ':!bash -c "( setxkbmap -print | grep symbols | grep caps ) && setxkbmap -option || setxkbmap -option caps:escape; setxkbmap -option grp:alt_shift_toggle"<CR>', { noremap=true, silent=false })
 map('n', '<Leader>h', ':set hlsearch!<CR>', opts)
 map('n', ';', ':', { noremap=true, silent=false })
-map('n', '<Leader>e', ':Lexplore<CR>', opts) --Toggle file tree by default Netrw. May be overriden by plugins.
+map('n', '<Leader>e', ':Lexplore<CR>', opts) --Toggle file tree by default Netrw. May be overridden by plugins.
 map("n", "H", "<<", opts)
 map("n", "L", ">>", opts)
 
@@ -55,6 +55,8 @@ map("n", "<A-k>", ":bprevious<CR>", opts)
 -- Navigate tabs
 map("n", "<A-C-k>", ":tabnext<CR>", opts)
 map("n", "<A-C-j>", ":tabprevious<CR>", opts)
+
+map("n", "<leader>s", ":setlocal spell!<CR>", opts) -- Toggle spell checking
 
 -- Visual --
 -- Stay in indent mode

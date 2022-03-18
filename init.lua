@@ -24,6 +24,5 @@ vim.cmd([[
 require ('user.keymappings')
 require ('user.options')
 require ('user.plugins')
-                                                                                
 vim.cmd([[exe 'cd '.stdpath('config')]])
 --vim.cmd([[exe 'edit '.stdpath('config').'/init.lua']])

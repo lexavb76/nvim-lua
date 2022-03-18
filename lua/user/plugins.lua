@@ -64,7 +64,7 @@ local ret = packer.startup({
                 package.loaded[plug] = nil -- force to reload plugin to reread user keymappins
                 require(plug)
             end,
-            run = ':TSUpdate'
+            run = ':TSUpdate' -- Run install script after install/update only
         }
         use { 'hrsh7th/nvim-cmp', -- The completion plugin
             requires = {
@@ -101,6 +101,16 @@ local ret = packer.startup({
                 package.loaded[plug] = nil -- force to reload plugin to reread user keymappins
                 require(plug)
             end,
+        }
+        use { "nvim-telescope/telescope.nvim", -- Fuzzy finder
+            disable = false,
+            after = 'plenary.nvim',
+            config = function() local plug = 'plugged.telescope'
+                package.loaded[plug] = nil -- force to reload plugin to reread user keymappins
+                require(plug)
+            end,
+            run = ':checkhealth telescope', -- Run install script after install/update only
+
         }
         -----------------------------------------------------------------------------------------------------------
         if packer_bootstrap then

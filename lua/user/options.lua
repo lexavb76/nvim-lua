@@ -43,6 +43,7 @@ local options = {
     sidescrolloff = 8,                       -- Minimal number of columns to keep left and right of the cursor.
     termguicolors = true,                    -- set term gui colors (most terminals support this)
     guifont = "monospace:h12",               -- the font used in graphical neovim applications "font_name:size"
+    spelllang = 'en_us',
 }
 for k, v in pairs(options) do
     opt[k] = v
