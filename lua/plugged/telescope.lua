@@ -92,6 +92,7 @@ telescope.setup {
 }
 -- Keymappings:
 vim.api.nvim_set_keymap('n', '<Leader>fg', ':Telescope live_grep<cr>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>fw', ':Telescope grep_string<cr>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>fh', ':Telescope help_tags<cr>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>ff', ':Telescope find_files<cr>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>fo', ':Telescope oldfiles<cr>', {noremap = true, silent = true})
@@ -100,5 +101,5 @@ vim.api.nvim_set_keymap('n', '<Leader>fm', ':Telescope man_pages<cr>', {noremap 
 vim.api.nvim_set_keymap('n', '<Leader>fk', ':Telescope keymaps<cr>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>fs', ':Telescope git_status<cr>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>fe', ':Telescope diagnostics<cr>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<Leader>fd', ':Telescope spell_suggest<cr>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>fd', ':Telescope spell_suggest theme=get_cursor previewer=false<cr>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>fp', ':Telescope projects<cr>', {noremap = true, silent = true})
