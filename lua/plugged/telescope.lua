@@ -103,3 +103,4 @@ vim.api.nvim_set_keymap('n', '<Leader>fs', ':Telescope git_status<cr>', {noremap
 vim.api.nvim_set_keymap('n', '<Leader>fe', ':Telescope diagnostics<cr>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>fd', ':Telescope spell_suggest theme=get_cursor previewer=false<cr>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>fp', ':Telescope projects<cr>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>fc', ':Telescope symbols<cr>', {noremap = true, silent = true})

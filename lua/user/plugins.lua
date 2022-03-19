@@ -125,6 +125,9 @@ local ret = packer.startup({
                 require(plug)
             end,
         }
+        use { "nvim-telescope/telescope-symbols.nvim", -- Extention for telescope for symbols library
+            after = 'telescope.nvim',
+        }
         -----------------------------------------------------------------------------------------------------------
         if packer_bootstrap then
             packer.sync()
