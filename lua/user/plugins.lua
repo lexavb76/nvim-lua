@@ -5,7 +5,7 @@ package.loaded['user.packer_init'] = nil
 require('user.packer_init')  -- All packer plugin configuration
 local ret = packer.startup({
     function(use) -- My plugins here:
-        -- default_packages_root = ~/.local/share/nvim/site/pack/packer'
+        -- DEFAULT_PACKAGES_ROOT = ~/.local/share/nvim/site/pack/packer'
 
         -- !!! Never disable !!! ----------------------------------------------------------------------------------
         use 'wbthomason/packer.nvim'      -- Packer can manage itself: https://github.com/wbthomason/packer.nvim
@@ -21,7 +21,7 @@ local ret = packer.startup({
         local font_location = '~/.local/share/fonts' -- Don't change it
         local font_family = 'Hack'
         --Have to use auxiliary namespace _M to get into the internal function scope. Local variables do not work.
-        _M.install_font_cmd = 'mkdir -p '..font_location..' && '..default_packages_root..'/start/nerd-fonts/install.sh '..font_family
+        _M.install_font_cmd = 'mkdir -p '..font_location..' && '..DEFAULT_PACKAGES_ROOT..'/start/nerd-fonts/install.sh '..font_family
         use { 'ryanoasis/nerd-fonts',     -- It is not a plugin actually just fonts with glyphs
             opt = false,
             tag = 'v*', -- The last tag, matching wildcard 'v*'
@@ -128,8 +128,14 @@ local ret = packer.startup({
         use { "nvim-telescope/telescope-symbols.nvim", -- Extention for telescope for symbols library
             after = 'telescope.nvim',
         }
+        use { "LinArcX/telescope-env.nvim", -- Extention for telescope for environment variables
+            after = 'telescope.nvim',
+            config = function()
+                require('telescope').load_extension('env')
+            end,
+        }
         -----------------------------------------------------------------------------------------------------------
-        if packer_bootstrap then
+        if PACKER_BOOTSTRAP then
             packer.sync()
         end
     end,

@@ -1,10 +1,9 @@
 local fn = vim.fn
--- default_packages_root = ~/.local/share/nvim/site/pack/packer'
-default_packages_root = fn.stdpath('data')..'/site/pack/packer'
-local install_path = default_packages_root..'/start/packer.nvim'
+DEFAULT_PACKAGES_ROOT = fn.stdpath('data')..'/site/pack/packer'
+local install_path = DEFAULT_PACKAGES_ROOT..'/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
     print('Install packer...')
-    packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    PACKER_BOOTSTRAP = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
 end
 -- Search in ~/.config/nvim/lua  directory:
 package.path = fn.stdpath('config')..'/lua/?.lua;'..package.path

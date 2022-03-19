@@ -2,7 +2,7 @@ local toggleterm = require("toggleterm")
 
 toggleterm.setup({
     size = 20,
-    open_mapping = [[<Leader>t]],
+    open_mapping = '<leader>t',
     hide_numbers = true,
     shade_filetypes = {},
     shade_terminals = true,
@@ -23,9 +23,9 @@ toggleterm.setup({
     },
 })
 
+local opts = {noremap = true}
 -- Keymappings
 function _G.set_terminal_keymaps()
-    local opts = {noremap = true}
     local map = vim.api.nvim_buf_set_keymap
     map(0, 't', '<Esc>', '<C-\\><C-n>',       opts) -- ESC exit to normal mode in terminal
     map(0, "t", "<C-h>", "<C-\\><C-n><C-w>h", opts) -- Windows navigation
@@ -39,6 +39,7 @@ function _G.set_terminal_keymaps()
 end
 
 vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
+-- vim.cmd('autocmd! TermOpen term://* lua require("toggleterm.terminal").Terminal:change_dir(vim.fn.getcwd())')
 
 local Terminal = require("toggleterm.terminal").Terminal
 local lazygit = Terminal:new({ cmd = "lazygit", hidden = true })
@@ -65,8 +66,10 @@ function _HTOP_TOGGLE()
     htop:toggle()
 end
 
-local python = Terminal:new({ cmd = "python", hidden = true })
+local bash = Terminal:new({ cmd = "bash", hidden = true, dir = vim.fn.expand('%:p:h') })
 
-function _PYTHON_TOGGLE()
-    python:toggle()
+function _BASH_TOGGLE()
+    -- bash:exec('cd /tmp')
+    bash:toggle()
 end
+-- vim.api.nvim_set_keymap('n', '<leader>t', ':lua _BASH_TOGGLE()<cr>', opts)
