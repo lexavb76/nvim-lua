@@ -94,6 +94,7 @@ cmp.setup {
             -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatinates the icons with the name of the item kind
             vim_item.menu = ({
                 nvim_lsp = '[LSP]',
+                nvim_lua = '[Api]',
                 luasnip = '[Snippet]',
                 buffer = '[Buffer]',
                 path = '[Path]',
@@ -105,8 +106,8 @@ cmp.setup {
         { name = 'luasnip',
             options = { use_show_condition = false } -- To disable filtering completion candidates by snippet's show_condition
         },
-        { name = 'nvim_lsp' },
         { name = 'nvim_lua' },
+        { name = 'nvim_lsp' },
         { name = 'buffer' },
         { name = 'path' },
     },
