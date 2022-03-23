@@ -33,6 +33,12 @@ local ret = packer.startup({
             end,
             run = _M.install_font_cmd,  -- Run install script after install/update only
         }
+        use { "folke/which-key.nvim", -- Prompts keymappins in popup menu. Manages all keymappins.
+            config = function() local plug = 'plugged.which-key'
+                package.loaded[plug] = nil -- force to reload plugin to reread user keymappins
+                require(plug)
+            end,
+        }
         -----------------------------------------------------------------------------------------------------------
         -- Ordinary plugins there:
 
@@ -43,6 +49,7 @@ local ret = packer.startup({
             end
         }
         use { 'numToStr/Comment.nvim',      -- Easily comment stuff
+            after = 'which-key.nvim',
             requires = 'JoosepAlviste/nvim-ts-context-commentstring',
             config = function() local plug = 'plugged.comment'
                 package.loaded[plug] = nil -- force to reload plugin to reread user keymappins
@@ -51,6 +58,7 @@ local ret = packer.startup({
         }
         use { 'kyazdani42/nvim-tree.lua',   -- Filesystem explorer
             disable = false,
+            after = 'which-key.nvim',
             requires = 'kyazdani42/nvim-web-devicons', -- optional, for file icons
             config = function() local plug = 'plugged.nvim-tree'
                 package.loaded[plug] = nil -- force to reload plugin to reread user keymappins
@@ -111,6 +119,7 @@ local ret = packer.startup({
             end,
         }
         use { "akinsho/toggleterm.nvim", -- Terminal
+            after = 'which-key.nvim',
             config = function() local plug = 'plugged.toggleterm'
                 package.loaded[plug] = nil -- force to reload plugin to reread user keymappins
                 require(plug)
@@ -118,7 +127,7 @@ local ret = packer.startup({
         }
         use { "nvim-telescope/telescope.nvim", -- Fuzzy finder
             disable = false,
-            after = 'plenary.nvim',
+            after = {'plenary.nvim', 'which-key.nvim'},
             config = function() local plug = 'plugged.telescope'
                 package.loaded[plug] = nil -- force to reload plugin to reread user keymappins
                 require(plug)

@@ -1,14 +1,43 @@
 local comment = require("Comment")
 --
 -- Keymappings:
-local map = vim.api.nvim_set_keymap
-local opts_remap = { noremap = false, silent = true }
-map('n', '<Leader>c', 'gcc', opts_remap ) -- Toggle comments over the line
-map('n', '<Leader>a', 'gcA', opts_remap ) -- Start comments from the end of the line
-map('n', '<Leader>O', 'gcO', opts_remap ) -- Start comments from the line above
-map('n', '<Leader>o', 'gco', opts_remap ) -- Start comments from the line below
-map('v', '<Leader>v', 'gb',  opts_remap ) -- Toggle comments of the block
-map('v', '<Leader>c', 'gc',  opts_remap ) -- Toggle comments of each line of the block
+-- (which-key plugin style)
+local status, wk  = pcall(require, 'which-key')
+local opts = {
+  mode = "n", -- NORMAL mode
+  prefix = "<leader>",
+  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+  silent = true, -- use `silent` when creating keymaps
+  noremap = false, -- use `noremap` when creating keymaps (in this case mappings are remapped)
+  nowait = true, -- use `nowait` when creating keymaps
+}
+local mappings= {
+    ['c'] = {'gcc', 'Toggle comment linewise'},
+    ['a'] = {'gcA', 'Comment at the end of line'},
+    ['O'] = {'gcO', 'Comment new line above'},
+    ['o'] = {'gco', 'Comment new line below'},
+}
+if status then
+    wk.register(mappings, opts)
+    for index, _ in pairs(mappings) do -- Looks like a bug but we need to directly cleanse other modes mappings
+        mappings[index] = nil
+    end
+    mappings['v'] = {'gb', 'Toggle comment of the block'}
+    mappings['c'] = {'gc', 'Toggle comment block linewise'}
+    opts.mode = 'v' -- VISUAL mode
+    wk.register(mappings, opts)
+else
+    -- Old style:
+    local map = vim.api.nvim_set_keymap
+    local opts_remap = { noremap = false, silent = true }
+    map('n', '<Leader>c', 'gcc', opts_remap ) -- Toggle comments over the line
+    map('n', '<Leader>a', 'gcA', opts_remap ) -- Start comments from the end of the line
+    map('n', '<Leader>O', 'gcO', opts_remap ) -- Start comments from the line above
+    map('n', '<Leader>o', 'gco', opts_remap ) -- Start comments from the line below
+    map('v', '<Leader>v', 'gb',  opts_remap ) -- Toggle comments of the block
+    map('v', '<Leader>c', 'gc',  opts_remap ) -- Toggle comments of each line of the block ]]
+end
+
 --------------------------------------------------------------------------------
 comment.setup {
     ---Add a space b/w comment and the line
