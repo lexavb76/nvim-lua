@@ -94,6 +94,7 @@ cmp.setup {
             -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatinates the icons with the name of the item kind
             vim_item.menu = ({
                 nvim_lsp = '[LSP]',
+                nvim_lsp_signature_help = '[LSP_sign]',
                 nvim_lua = '[Api]',
                 luasnip = '[Snippet]',
                 buffer = '[Buffer]',
@@ -108,6 +109,7 @@ cmp.setup {
         },
         { name = 'nvim_lua' },
         { name = 'nvim_lsp' },
+        { name = 'nvim_lsp_signature_help' },
         { name = 'buffer' },
         { name = 'path' },
     },

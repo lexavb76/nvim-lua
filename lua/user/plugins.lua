@@ -94,8 +94,8 @@ local ret = packer.startup({
                 { 'hrsh7th/cmp-cmdline', after = 'nvim-cmp' }, -- cmdline completions
                 { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' }, -- nvim-cmp source for neovim Lua API
                 { 'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp' }, -- LSP completion
+                { 'hrsh7th/cmp-nvim-lsp-signature-help', after = 'nvim-cmp' }, -- functions signature completion
                 -- { 'hrsh7th/cmp-nvim-lsp-document-symbol', after = 'nvim-cmp' },
-                -- 'hrsh7th/cmp-nvim-lsp-signature-help',
                 -- 'lukas-reineke/cmp-under-comparator',
             },
             config = function() local plug = 'plugged.nvim-cmp'
