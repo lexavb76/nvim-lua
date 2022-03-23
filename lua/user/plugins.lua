@@ -72,6 +72,14 @@ local ret = packer.startup({
             end,
             run = ':TSUpdate' -- Run install script after install/update only
         }
+        use { 'RRethy/nvim-treesitter-endwise', -- Adds end automatically to Lua, bash, Vimscript, Ruby, ...
+            after = 'nvim-treesitter',
+            config = function()  --  Is called every time you load the plugin
+                require('nvim-treesitter.configs').setup {
+                    endwise = { enable = true, }
+                }
+            end
+        }
         use { 'hrsh7th/nvim-cmp', -- The completion plugin
             requires = {
                 { 'L3MON4D3/LuaSnip', --snippet engine
