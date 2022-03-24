@@ -1,6 +1,5 @@
 local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
-local term_opts = { silent = true }
 
 vim.cmd([[
     augroup caps_to_esc

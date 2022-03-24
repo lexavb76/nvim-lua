@@ -39,6 +39,14 @@ end
 -- Keymappings
 function _G.setup_global_mappings()
     local opts = {silent = true, noremap = true}
+    local wk_opts = {
+        mode = "n", -- NORMAL mode
+        prefix = "",
+        buffer = nil, -- nil: Global mappings. 0: Current buffer. Specify a buffer number for buffer local mappings
+        silent = true, -- use `silent` when creating keymaps
+        noremap = true, -- use `noremap` when creating keymaps (in this case mappings are remapped)
+        nowait = true, -- use `nowait` when creating keymaps
+    }
     local conf = require("toggleterm.config").get()
     local map = vim.api.nvim_buf_set_keymap
     local unmap = vim.api.nvim_buf_del_keymap
@@ -49,6 +57,14 @@ function _G.setup_global_mappings()
             [[<Cmd>lua require'toggleterm'.exec_command('cmd="\n'..get_terminal_cd_command()..'"')<CR>]],
             opts
         )
+        -- (which-key plugin style)
+        local status, wk  = pcall(require, 'which-key')
+        local mappings= {
+            [mapping] = {'Toggle terminal'},
+        }
+        if status then
+            wk.register(mappings, wk_opts)
+        end
         if conf.insert_mappings then
             api.nvim_set_keymap("i", mapping,
                 [[<Esc><Cmd>lua require'toggleterm'.exec_command('cmd="\n'..get_terminal_cd_command()..'"')<CR>]],
@@ -69,8 +85,6 @@ function _G.set_terminal_keymaps()
     map(0, "t", "<C-j>", "<C-\\><C-n><C-w>j", opts)
     map(0, "t", "<C-k>", "<C-\\><C-n><C-w>k", opts)
     map(0, "t", "<C-l>", "<C-\\><C-n><C-w>l", opts)
-    -- map(0, "t", "<A-j>", "<C-\\><C-n>:bnext<CR>",     opts)
-    -- map(0, "t", "<A-k>", "<C-\\><C-n>:bprevious<CR>", opts)
     map(0, "t", "<A-C-j>", "<C-\\><C-n>:tabnext<CR>",     opts)
     map(0, "t", "<A-C-k>", "<C-\\><C-n>:tabprevious<CR>", opts)
 end

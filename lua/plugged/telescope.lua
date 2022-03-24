@@ -91,6 +91,22 @@ telescope.setup {
   },
 }
 -- Keymappings:
+-- (which-key plugin style)
+local wk_opts = {
+    mode = "n", -- NORMAL mode
+    prefix = "",
+    buffer = nil, -- nil: Global mappings. 0: Current buffer. Specify a buffer number for buffer local mappings
+    silent = true, -- use `silent` when creating keymaps
+    noremap = true, -- use `noremap` when creating keymaps (in this case mappings are remapped)
+    nowait = true, -- use `nowait` when creating keymaps
+}
+local status, wk  = pcall(require, 'which-key')
+if status then
+    local mappings= {
+        ['<leader>f'] = {name = '+fuzzy find'},
+    }
+    wk.register(mappings, wk_opts)
+end
 vim.api.nvim_set_keymap('n', '<Leader>fg', ':Telescope live_grep<cr>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>fw', ':Telescope grep_string<cr>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>fh', ':Telescope help_tags<cr>', {noremap = true, silent = true})
@@ -104,3 +120,4 @@ vim.api.nvim_set_keymap('n', '<Leader>fe', ':Telescope diagnostics<cr>', {norema
 vim.api.nvim_set_keymap('n', '<Leader>fd', ':Telescope spell_suggest theme=get_cursor previewer=false<cr>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>fp', ':Telescope projects<cr>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>fc', ':Telescope symbols<cr>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>fr', ':Telescope registers<cr>', {noremap = true, silent = true})
