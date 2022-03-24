@@ -1,4 +1,5 @@
 local fn = vim.fn
+-- DEFAULT_PACKAGES_ROOT = ~/.local/share/nvim/site/pack/packer'
 DEFAULT_PACKAGES_ROOT = fn.stdpath('data')..'/site/pack/packer'
 local install_path = DEFAULT_PACKAGES_ROOT..'/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
