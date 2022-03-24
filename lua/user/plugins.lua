@@ -59,7 +59,7 @@ local ret = packer.startup({
         use { 'kyazdani42/nvim-tree.lua',   -- Filesystem explorer
             disable = false,
             after = 'which-key.nvim',
-            requires = 'kyazdani42/nvim-web-devicons', -- optional, for file icons
+            requires = { 'kyazdani42/nvim-web-devicons', opt = true },
             config = function() local plug = 'plugged.nvim-tree'
                 package.loaded[plug] = nil -- force to reload plugin to reread user keymappins
                 require(plug)
@@ -149,6 +149,13 @@ local ret = packer.startup({
             after = 'telescope.nvim',
             config = function()
                 require('telescope').load_extension('env')
+            end,
+        }
+        use { "nvim-lualine/lualine.nvim", -- Status line
+            requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+            config = function() local plug = 'plugged.lualine'
+                package.loaded[plug] = nil -- force to reload plugin to reread user keymappins
+                require(plug)
             end,
         }
         -----------------------------------------------------------------------------------------------------------
