@@ -158,6 +158,13 @@ local ret = packer.startup({
                 require(plug)
             end,
         }
+        use { "lewis6991/gitsigns.nvim", -- Git visualisation
+            requires = { 'nvim-lua/plenary.nvim' },
+            config = function() local plug = 'plugged.gitsigns'
+                package.loaded[plug] = nil -- force to reload plugin to reread user keymappins
+                require(plug)
+            end,
+        }
         -----------------------------------------------------------------------------------------------------------
         if PACKER_BOOTSTRAP then
             packer.sync()

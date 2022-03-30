@@ -42,7 +42,7 @@ end
 comment.setup {
     ---Add a space b/w comment and the line
     ---@type boolean
-    padding = true,
+    padding = false,
 
     ---Whether the cursor should stay at its position
     ---NOTE: This only affects NORMAL mode mappings and doesn't work with dot-repeat
