@@ -68,8 +68,8 @@ plug.setup {
                     ['p'] = {"v:true ? '<cmd>Gitsigns preview_hunk<CR>' : ''", 'Preview hunk'},
                     ['B'] = {[[v:true ? '<cmd>lua require"gitsigns".blame_line{full=true}<CR>' : '']], 'Git blame'},
                     ['b'] = {"v:true ? '<cmd>Gitsigns toggle_current_line_blame<CR>' : ''", 'Toggle line blame'},
-                    ['d'] = {"v:true ? '<cmd>Gitsigns diffthis<CR>' : ''", 'Git diff'},
-                    ['D'] = {[[v:true ? '<cmd>lua require"gitsigns".diffthis("~")<CR>' : '']], 'Undiff'},
+                    ['d'] = {"v:true ? '<cmd>Gitsigns diffthis<CR>' : ''", 'Diff against index'},
+                    ['D'] = {[[v:true ? '<cmd>lua require"gitsigns".diffthis("~1")<CR>' : '']], 'Diff against last commit'},
                     ['t'] = {"v:true ? '<cmd>Gitsigns toggle_deleted<CR>' : ''", 'Toggle deleted'},
                 },
             },
@@ -113,7 +113,7 @@ plug.setup {
                 map('n', '<leader>gB', '<cmd>lua require"gitsigns".blame_line{full=true}<CR>')
                 map('n', '<leader>gb', '<cmd>Gitsigns toggle_current_line_blame<CR>')
                 map('n', '<leader>gd', '<cmd>Gitsigns diffthis<CR>')
-                map('n', '<leader>gD', '<cmd>lua require"gitsigns".diffthis("~")<CR>')
+                map('n', '<leader>gD', '<cmd>lua require"gitsigns".diffthis("~1")<CR>')
                 map('n', '<leader>gt', '<cmd>Gitsigns toggle_deleted<CR>')
 
                 -- Text object
