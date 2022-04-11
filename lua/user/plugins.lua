@@ -9,11 +9,12 @@ local ret = packer.startup({
 
         -- !!! Never disable !!! ----------------------------------------------------------------------------------
         use 'wbthomason/packer.nvim'      -- Packer can manage itself: https://github.com/wbthomason/packer.nvim
+        _M.configure_plug = function(plug)
+            package.loaded[plug] = nil -- Force to reload plugin to reread user keymappins
+            require(plug)
+        end
         use { 'lewis6991/impatient.nvim', -- Speed up modules loading time
-            config = function() local plug = 'impatient'
-                package.loaded[plug] = nil -- Force to reload plugin to reread user keymappins
-                require(plug).enable_profile()
-            end
+            config = _M.configure_plug('impatient'),
         }
         use 'nvim-lua/popup.nvim'         -- An implementation of the Popup API from vim in Neovim
         use 'nvim-lua/plenary.nvim'       -- Useful lua functions used by lots of plugins
@@ -34,44 +35,29 @@ local ret = packer.startup({
             run = _M.install_font_cmd,  -- Run install script after install/update only
         }
         use { "folke/which-key.nvim", -- Prompts keymappins in popup menu. Manages all keymappins.
-            config = function() local plug = 'plugged.which-key'
-                package.loaded[plug] = nil -- force to reload plugin to reread user keymappins
-                require(plug)
-            end,
+            config = _M.configure_plug('plugged.which-key'),
         }
         -----------------------------------------------------------------------------------------------------------
         -- Ordinary plugins there:
 
         use { 'windwp/nvim-autopairs',      -- Autopairs, integrates with both cmp and treesitter
-            config = function() local plug = 'plugged.nvim-autopairs'
-                package.loaded[plug] = nil -- Force to reload plugin to reread user keymappins
-                require(plug)
-            end
+            config = _M.configure_plug('plugged.nvim-autopairs'),
         }
         use { 'numToStr/Comment.nvim',      -- Easily comment stuff
             after = 'which-key.nvim',
             requires = 'JoosepAlviste/nvim-ts-context-commentstring',
-            config = function() local plug = 'plugged.comment'
-                package.loaded[plug] = nil -- force to reload plugin to reread user keymappins
-                require(plug)
-            end
+            config = _M.configure_plug('plugged.comment'),
         }
         use { 'kyazdani42/nvim-tree.lua',   -- Filesystem explorer
             disable = false,
             after = 'which-key.nvim',
             requires = { 'kyazdani42/nvim-web-devicons', opt = true },
-            config = function() local plug = 'plugged.nvim-tree'
-                package.loaded[plug] = nil -- force to reload plugin to reread user keymappins
-                require(plug)
-            end
+            config = _M.configure_plug('plugged.nvim-tree'),
         }
         use { 'folke/tokyonight.nvim',      -- Colorscheme
             disable = false,
             branch = 'main',
-            config = function() local plug = 'plugged.tokyonight'
-                package.loaded[plug] = nil -- force to reload plugin to reread user keymappins
-                require(plug)
-            end
+            config = _M.configure_plug('plugged.tokyonight'),
         }
         use { 'nvim-treesitter/nvim-treesitter', -- Tree-sitter based highlighting
             config = function() local plug = 'plugged.nvim-treesitter'
@@ -106,41 +92,26 @@ local ret = packer.startup({
                 -- { 'hrsh7th/cmp-nvim-lsp-document-symbol', after = 'nvim-cmp' },
                 -- 'lukas-reineke/cmp-under-comparator',
             },
-            config = function() local plug = 'plugged.nvim-cmp'
-                package.loaded[plug] = nil -- force to reload plugin to reread user keymappins
-                require(plug)
-            end,
+            config = _M.configure_plug('plugged.nvim-cmp'),
         }
         use 'neovim/nvim-lspconfig' -- enable LSP
         use { 'williamboman/nvim-lsp-installer', after = 'nvim-lspconfig', -- simple to use language server installer
-            config = function() local plug = 'plugged.lsp.lsp-installer'
-                package.loaded[plug] = nil -- force to reload plugin to reread user keymappins
-                require(plug)
-            end,
+            config = _M.configure_plug('plugged.lsp.lsp-installer'),
         }
         use { "akinsho/toggleterm.nvim", -- Terminal
             after = 'which-key.nvim',
-            config = function() local plug = 'plugged.toggleterm'
-                package.loaded[plug] = nil -- force to reload plugin to reread user keymappins
-                require(plug)
-            end,
+            config = _M.configure_plug('plugged.toggleterm'),
         }
         use { "nvim-telescope/telescope.nvim", -- Fuzzy finder
             disable = false,
             after = {'plenary.nvim', 'which-key.nvim'},
-            config = function() local plug = 'plugged.telescope'
-                package.loaded[plug] = nil -- force to reload plugin to reread user keymappins
-                require(plug)
-            end,
+            config = _M.configure_plug('plugged.telescope'),
             run = ':checkhealth telescope', -- Run install script after install/update only
 
         }
         use { "ahmedkhalf/project.nvim", -- Extention for telescope for project management
             after = 'telescope.nvim',
-            config = function() local plug = 'plugged.project'
-                package.loaded[plug] = nil -- force to reload plugin to reread user keymappins
-                require(plug)
-            end,
+            config = _M.configure_plug('plugged.project'),
         }
         use { "nvim-telescope/telescope-symbols.nvim", -- Extention for telescope for symbols library
             after = 'telescope.nvim',
@@ -153,17 +124,11 @@ local ret = packer.startup({
         }
         use { "nvim-lualine/lualine.nvim", -- Status line
             requires = { 'kyazdani42/nvim-web-devicons', opt = true },
-            config = function() local plug = 'plugged.lualine'
-                package.loaded[plug] = nil -- force to reload plugin to reread user keymappins
-                require(plug)
-            end,
+            config = _M.configure_plug('plugged.lualine'),
         }
         use { "lewis6991/gitsigns.nvim", -- Git visualisation
             requires = { 'nvim-lua/plenary.nvim' },
-            config = function() local plug = 'plugged.gitsigns'
-                package.loaded[plug] = nil -- force to reload plugin to reread user keymappins
-                require(plug)
-            end,
+            config = _M.configure_plug('plugged.gitsigns'),
         }
         -----------------------------------------------------------------------------------------------------------
         if PACKER_BOOTSTRAP then

@@ -69,7 +69,7 @@ plug.setup {
                     ['B'] = {[[v:true ? '<cmd>lua require"gitsigns".blame_line{full=true}<CR>' : '']], 'Git blame'},
                     ['b'] = {"v:true ? '<cmd>Gitsigns toggle_current_line_blame<CR>' : ''", 'Toggle line blame'},
                     ['d'] = {"v:true ? '<cmd>Gitsigns diffthis<CR>' : ''", 'Diff against index'},
-                    ['D'] = {[[v:true ? '<cmd>lua require"gitsigns".diffthis("~1")<CR>' : '']], 'Diff against last commit'},
+                    ['D'] = {[[v:true ? '<cmd>lua require"gitsigns".diffthis("~1")<CR>' : '']], 'Diff against previous commit'},
                     ['t'] = {"v:true ? '<cmd>Gitsigns toggle_deleted<CR>' : ''", 'Toggle deleted'},
                 },
             },
