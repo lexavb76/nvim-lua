@@ -99,6 +99,7 @@ local ret = packer.startup({
             config = _M.configure_plug('plugged.lsp.lsp-installer'),
         }
         use { "akinsho/toggleterm.nvim", -- Terminal
+            branch = 'main',
             after = 'which-key.nvim',
             config = _M.configure_plug('plugged.toggleterm'),
         }
