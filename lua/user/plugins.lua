@@ -75,6 +75,7 @@ local ret = packer.startup({
             end
         }
         use { 'hrsh7th/nvim-cmp', -- The completion plugin
+            branch = 'main',
             requires = {
                 { 'L3MON4D3/LuaSnip', --snippet engine
                     requires = 'rafamadriz/friendly-snippets', -- a bunch of snippets to use
@@ -130,6 +131,12 @@ local ret = packer.startup({
         use { "lewis6991/gitsigns.nvim", -- Git visualisation
             requires = { 'nvim-lua/plenary.nvim' },
             config = _M.configure_plug('plugged.gitsigns'),
+        }
+        use { "goolord/alpha-nvim", -- Greeter
+            disable = false,
+            branch = 'main',
+            requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+            config = _M.configure_plug('plugged.alpha'),
         }
         -----------------------------------------------------------------------------------------------------------
         if PACKER_BOOTSTRAP then

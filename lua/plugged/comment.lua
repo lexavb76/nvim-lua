@@ -3,7 +3,7 @@ local comment = require("Comment")
 -- Keymappings:
 -- (which-key plugin style)
 local status, wk  = pcall(require, 'which-key')
-local opts = {
+local opts_n = {
   mode = "n", -- NORMAL mode
   prefix = "<leader>",
   buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
@@ -11,21 +11,31 @@ local opts = {
   noremap = false, -- use `noremap` when creating keymaps (in this case mappings are remapped)
   nowait = true, -- use `nowait` when creating keymaps
 }
-local mappings= {
+local opts_v = {
+  mode = "v", -- VISUAL mode
+  prefix = "<leader>",
+  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+  silent = true, -- use `silent` when creating keymaps
+  noremap = false, -- use `noremap` when creating keymaps (in this case mappings are remapped)
+  nowait = true, -- use `nowait` when creating keymaps
+}
+
+local mappings_n = {
     ['c'] = {'gcc', 'Toggle comment linewise'},
     ['a'] = {'gcA', 'Comment at the end of line'},
     ['O'] = {'gcO', 'Comment new line above'},
     ['o'] = {'gco', 'Comment new line below'},
 }
+local mappings_v = {
+    ['v'] = {'gb', 'Toggle comment of the block'},
+    ['c'] = {'gc', 'Toggle comment block linewise'},
+}
 if status then
-    wk.register(mappings, opts)
-    for index, _ in pairs(mappings) do -- Looks like a bug but we need to directly cleanse other modes mappings
+    wk.register(mappings_n, opts_n)
+    --[[for index, _ in pairs(mappings) do -- Looks like a bug but we need to directly cleanse other modes mappings
         mappings[index] = nil
-    end
-    mappings['v'] = {'gb', 'Toggle comment of the block'}
-    mappings['c'] = {'gc', 'Toggle comment block linewise'}
-    opts.mode = 'v' -- VISUAL mode
-    wk.register(mappings, opts)
+    end]]
+    wk.register(mappings_v, opts_v)
 else
     -- Old style:
     local map = vim.api.nvim_set_keymap
