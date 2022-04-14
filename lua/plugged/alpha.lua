@@ -1,5 +1,11 @@
-local plug = require("alpha")
---
+local pname = 'alpha'
+local try = require('user.utils').try
+local wait = 5
+local res, plug = try(wait, require, pname) --try wait sec to load the module
+if not res then
+    print('Plugin "'..pname..'" is disabled.')
+    return
+end
 --------------------------------------------------------------------------------
 local dashboard = require "alpha.themes.dashboard"
 
@@ -13,27 +19,28 @@ local function button(sc, txt, keybind, keybind_opts)
 end
 
 local function footer()
-  local plugins = #vim.tbl_keys(packer_plugins)
+  local _, plugins = try(1, vim.tbl_keys, _G.packer_plugins)
+  plugins = type(plugins) == "table" and #plugins or 0
   local v = vim.version()
   local datetime = os.date " %d-%m-%Y   %H:%M:%S"
   return string.format(" %d   v%d.%d.%d  %s", plugins, v.major, v.minor, v.patch, datetime)
 end
 
 -- header
---dashboard.section.header.val = require("config.utils.headers").random
+dashboard.section.header.val = 'Felix'
 --dashboard.section.header.opts.hl = "AlphaCol" .. math.random(5)
 
 -- buttons
 dashboard.section.buttons.val = {
-  button("SPC e", "  File explorer"),
-  button("SPC f o", "  Recently opened files"),
-  button("SPC f f", "  Find file"),
-  button("SPC f w", "  Find word"),
+  button("SPC e",   "   File explorer"),
+  button("SPC f o", "   Recently opened files"),
+  button("SPC f f", "   Find file"),
+  button("SPC f w", "   Find word"),
   button("SPC f p", "🏭  Find project"),
   --button("SPC s s", "  Open session"),
   --button("SPC c n", "  New file"),
   --button("SPC p u", "  Update plugins"),
-  button("q", "  Quit", "<Cmd>qa<CR>"),
+  button("q",       "   Quit", "<Cmd>qa<CR>"),
 }
 
 -- footer
@@ -73,4 +80,3 @@ vim.api.nvim_create_autocmd("FileType", {
     })
   end,
 })
---vim.api.nvim_create_autocmd("")

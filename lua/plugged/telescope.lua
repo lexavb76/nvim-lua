@@ -1,7 +1,12 @@
-local telescope = require "telescope"
+local pname = 'telescope'
+local res, plug = pcall(require, pname)
+if not res then
+    print('Plugin "'..pname..'" is disabled.')
+    return
+end
 local actions = require "telescope.actions"
 
-telescope.setup {
+plug.setup {
   defaults = {
 
     prompt_prefix = " ",
