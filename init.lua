@@ -12,7 +12,6 @@ package.path = fn.stdpath('config')..'/lua/?.lua;'..package.path
 vim.cmd([[
     augroup user_config
         autocmd!
-        autocmd VimEnter       *                               PackerSync
         autocmd BufWritePost packer_init.lua  source <afile> | PackerCompile
         autocmd BufWritePost plugins.lua      source <afile> | PackerSync
         autocmd BufWritePost init.lua         source <afile>
@@ -20,6 +19,7 @@ vim.cmd([[
         autocmd BufWritePost options.lua      source <afile>
     augroup end
 ]])
+        --"autocmd VimEnter       *                               PackerSync
 
 require ('user.keymappings')
 require ('user.options')

@@ -39,7 +39,7 @@ map("n", "<C-k>", "<C-w>k", opts)
 map("n", "<C-l>", "<C-w>l", opts)
 map("n", "<C-c>", "<C-w>c", opts) -- Close current window
 map("n", "<C- >", "<C-w>w", opts) -- Move between windows
-map("n", "<C-CR>", ":tabnew %<CR>", opts) -- Open window in new tab
+map("n", "<C-CR>", "<C-w>T", opts) -- Open window in new tab
 
 -- Resize with arrows
 map("n", "<C-Up>", ":resize -2<CR>", opts)

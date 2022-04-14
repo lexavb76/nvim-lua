@@ -27,19 +27,26 @@ local function footer()
 end
 
 -- header
-dashboard.section.header.val = 'Felix'
+dashboard.section.header.val = {
+    [[                               __                ]],
+    [[  ___     ___    ___   __  __ /\_\    ___ ___    ]],
+    [[ / _ `\  / __`\ / __`\/\ \/\ \\/\ \  / __` __`\  ]],
+    [[/\ \/\ \/\  __//\ \_\ \ \ \_/ |\ \ \/\ \/\ \/\ \ ]],
+    [[\ \_\ \_\ \____\ \____/\ \___/  \ \_\ \_\ \_\ \_\]],
+    [[ \/_/\/_/\/____/\/___/  \/__/    \/_/\/_/\/_/\/_/]],
+}
 --dashboard.section.header.opts.hl = "AlphaCol" .. math.random(5)
 
 -- buttons
 dashboard.section.buttons.val = {
-  button("SPC e",   "   File explorer"),
   button("SPC f o", "   Recently opened files"),
+  button("SPC f p", "🏭  Find project"),
   button("SPC f f", "   Find file"),
   button("SPC f w", "   Find word"),
-  button("SPC f p", "🏭  Find project"),
   --button("SPC s s", "  Open session"),
   --button("SPC c n", "  New file"),
-  --button("SPC p u", "  Update plugins"),
+  button("SPC e",   "   File explorer"),
+  button("u",       "   Update plugins (:PackerSync)", "<cmd>PackerSync<cr>"),
   button("q",       "   Quit", "<Cmd>qa<CR>"),
 }
 
@@ -80,3 +87,28 @@ vim.api.nvim_create_autocmd("FileType", {
     })
   end,
 })
+
+-- Keymappings:
+-- (which-key plugin style)
+local status, wk = pcall(require, 'which-key')
+local opts = {
+    mode = "n", -- NORMAL mode
+    buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+    silent = true, -- use `silent` when creating keymaps
+    noremap = true, -- use `noremap` when creating keymaps (in this case mappings are remapped)
+    nowait = true, -- use `nowait` when creating keymaps
+    expr = false,
+}
+local mappings = {
+    ['<leader>b'] = {'<cmd>Alpha<cr>', 'Toggle beginning page'},
+}
+if status then
+    wk.register(mappings, opts)
+else
+    -- Old style:
+    local function map(mod, lhs, rhs, op)
+        op = vim.tbl_extend('force', {noremap = true, silent = true}, op or {})
+        vim.api.nvim_set_keymap(mod, lhs, rhs, op)
+    end
+    map('n', '<leader>b', '<Cmd>Alpha<CR>')
+end
