@@ -1,4 +1,12 @@
-local comment = require("Comment")
+local pname = 'Comment'
+local try = require('user.utils').try
+local wait = 5
+local res, plug = try(wait, require, pname) --try wait sec to load the module
+if not res then
+    print('Plugin "'..pname..'" is disabled.')
+    return
+end
+--------------------------------------------------------------------------------
 --
 -- Keymappings:
 -- (which-key plugin style)
@@ -49,7 +57,7 @@ else
 end
 
 --------------------------------------------------------------------------------
-comment.setup {
+plug.setup {
     ---Add a space b/w comment and the line
     ---@type boolean
     padding = false,

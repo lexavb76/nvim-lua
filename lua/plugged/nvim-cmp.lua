@@ -1,4 +1,12 @@
-local cmp = require('cmp')
+local pname = 'cmp'
+local try = require('user.utils').try
+local wait = 5
+local res, plug = try(wait, require, pname) --try wait sec to load the module
+if not res then
+    print('Plugin "'..pname..'" is disabled.')
+    return
+end
+--------------------------------------------------------------------------------
 local luasnip = require('luasnip')
 require('luasnip/loaders/from_vscode').lazy_load()
 
@@ -37,29 +45,29 @@ local kind_icons = {
 }
 -- find more here: https://www.nerdfonts.com/cheat-sheet
 
-cmp.setup {
+plug.setup {
     snippet = {
         expand = function(args)
             luasnip.lsp_expand(args.body) -- For `luasnip` users.
         end,
     },
     mapping = {
-        ['<C-k>'] = cmp.mapping.select_prev_item(),
-        ['<C-j>'] = cmp.mapping.select_next_item(),
-        ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-1), { 'i', 'c' }),
-        ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(1), { 'i', 'c' }),
-        ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-        ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
-        ['<C-e>'] = cmp.mapping {
-            i = cmp.mapping.abort(),
-            c = cmp.mapping.close(),
+        ['<C-k>'] = plug.mapping.select_prev_item(),
+        ['<C-j>'] = plug.mapping.select_next_item(),
+        ['<C-b>'] = plug.mapping(plug.mapping.scroll_docs(-1), { 'i', 'c' }),
+        ['<C-f>'] = plug.mapping(plug.mapping.scroll_docs(1), { 'i', 'c' }),
+        ['<C-Space>'] = plug.mapping(plug.mapping.complete(), { 'i', 'c' }),
+        ['<C-y>'] = plug.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+        ['<C-e>'] = plug.mapping {
+            i = plug.mapping.abort(),
+            c = plug.mapping.close(),
         },
         -- Accept currently selected item. If none selected, `select` first item.
         -- Set `select` to `false` to only confirm explicitly selected items.
-        ['<CR>'] = cmp.mapping.confirm { select = true },
-        ['<Tab>'] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-              cmp.select_next_item()
+        ['<CR>'] = plug.mapping.confirm { select = true },
+        ['<Tab>'] = plug.mapping(function(fallback)
+            if plug.visible() then
+              plug.select_next_item()
             elseif luasnip.expandable() then
               luasnip.expand()
             elseif luasnip.expand_or_jumpable() then
@@ -73,9 +81,9 @@ cmp.setup {
             'i',
             's',
         }),
-        ['<S-Tab>'] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                cmp.select_prev_item()
+        ['<S-Tab>'] = plug.mapping(function(fallback)
+            if plug.visible() then
+                plug.select_prev_item()
             elseif luasnip.jumpable(-1) then
                 luasnip.jump(-1)
             else
@@ -114,12 +122,12 @@ cmp.setup {
         { name = 'path' },
     },
     confirm_opts = {
-        behavior = cmp.ConfirmBehavior.Replace,
+        behavior = plug.ConfirmBehavior.Replace,
         select = false,
     },
     window = {
-        documentation = cmp.config.window.bordered(),
-        completion = cmp.config.window.bordered(),
+        documentation = plug.config.window.bordered(),
+        completion = plug.config.window.bordered(),
     },
     experimental = {
         ghost_text = true,
@@ -127,14 +135,14 @@ cmp.setup {
     },
 }
 
-cmp.setup.cmdline(':', {
+plug.setup.cmdline(':', {
     sources = {
         { name = 'cmdline' },
         { name = 'path' },
     }
 })
 
-cmp.setup.cmdline('/', {
+plug.setup.cmdline('/', {
     sources = {
         { name = 'buffer' }
     }

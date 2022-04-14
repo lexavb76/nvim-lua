@@ -1,3 +1,12 @@
+local pname = 'nvim-tree'
+local try = require('user.utils').try
+local wait = 5
+local res, plug = try(wait, require, pname) --try wait sec to load the module
+if not res then
+    print('Plugin "'..pname..'" is disabled.')
+    return
+end
+--------------------------------------------------------------------------------
 -- following options are the default
 -- each of these are documented in `:help nvim-tree.OPTION_NAME`
 --[[
@@ -87,7 +96,7 @@ vim.cmd([[autocmd  user_config  BufWritePre  plugins.lua  NvimTreeClose]])
 local tree_cb = require('nvim-tree.config').nvim_tree_callback
 
 -- setup function must go the last:
-require('nvim-tree').setup {
+plug.setup {
     disable_netrw = false, -- Completely disable netrw, default: `false`
     hijack_netrw = true,   -- Hijack netrw windows (overriden if |disable_netrw| is `true`), default: `true`
     hijack_cursor = true,                    -- Keeps the cursor on the first letter of the filename

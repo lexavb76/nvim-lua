@@ -1,9 +1,12 @@
 local pname = 'telescope'
-local res, plug = pcall(require, pname)
+local try = require('user.utils').try
+local wait = 5
+local res, plug = try(wait, require, pname) --try wait sec to load the module
 if not res then
     print('Plugin "'..pname..'" is disabled.')
     return
 end
+--------------------------------------------------------------------------------
 local actions = require "telescope.actions"
 
 plug.setup {

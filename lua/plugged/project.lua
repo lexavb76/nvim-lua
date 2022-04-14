@@ -1,5 +1,13 @@
-local  project = require ("project_nvim")
-project.setup({
+local pname = 'project_nvim'
+local try = require('user.utils').try
+local wait = 5
+local res, plug = try(wait, require, pname) --try wait sec to load the module
+if not res then
+    print('Plugin "'..pname..'" is disabled.')
+    return
+end
+--------------------------------------------------------------------------------
+plug.setup({
     ---@usage set to false to disable project.nvim.
     --- This is on by default since it's currently the expected behavior.
     active = true,

@@ -49,13 +49,11 @@ local ret = packer.startup({
             config = _M.configure_plug('plugged.comment'),
         }
         use { 'kyazdani42/nvim-tree.lua',   -- Filesystem explorer
-            disable = false,
             after = 'which-key.nvim',
             requires = { 'kyazdani42/nvim-web-devicons', opt = true },
             config = _M.configure_plug('plugged.nvim-tree'),
         }
         use { 'folke/tokyonight.nvim',      -- Colorscheme
-            disable = false,
             branch = 'main',
             config = _M.configure_plug('plugged.tokyonight'),
         }
@@ -105,7 +103,6 @@ local ret = packer.startup({
             config = _M.configure_plug('plugged.toggleterm'),
         }
         use { "nvim-telescope/telescope.nvim", -- Fuzzy finder
-            disable = false,
             after = {'plenary.nvim', 'which-key.nvim'},
             config = _M.configure_plug('plugged.telescope'),
             run = ':checkhealth telescope', -- Run install script after install/update only
@@ -133,7 +130,6 @@ local ret = packer.startup({
             config = _M.configure_plug('plugged.gitsigns'),
         }
         use { "goolord/alpha-nvim", -- Greeter
-            disable = false,
             branch = 'main',
             requires = { 'kyazdani42/nvim-web-devicons', opt = true },
             config = _M.configure_plug('plugged.alpha'),
