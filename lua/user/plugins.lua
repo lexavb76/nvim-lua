@@ -58,10 +58,7 @@ local ret = packer.startup({
             config = _M.configure_plug('plugged.tokyonight'),
         }
         use { 'nvim-treesitter/nvim-treesitter', -- Tree-sitter based highlighting
-            config = function() local plug = 'plugged.nvim-treesitter'
-                package.loaded[plug] = nil -- force to reload plugin to reread user keymappins
-                require(plug)
-            end,
+            config = _M.configure_plug('plugged.nvim-treesitter'),
             run = ':TSUpdate' -- Run install script after install/update only
         }
         use { 'RRethy/nvim-treesitter-endwise', -- Adds end automatically to Lua, bash, Vimscript, Ruby, ...
