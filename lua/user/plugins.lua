@@ -35,6 +35,7 @@ local ret = packer.startup({
             run = _M.install_font_cmd,  -- Run install script after install/update only
         }
         use { "folke/which-key.nvim", -- Prompts keymappins in popup menu. Manages all keymappins.
+            commit = "bd4411a", --For proper work with v0.7.2
             config = _M.configure_plug('plugged.which-key'),
         }
         -----------------------------------------------------------------------------------------------------------
@@ -45,11 +46,13 @@ local ret = packer.startup({
         }
         use { 'numToStr/Comment.nvim',      -- Easily comment stuff
             after = 'which-key.nvim',
+            commit = "4086630", --For proper work with v0.7.2
             requires = 'JoosepAlviste/nvim-ts-context-commentstring',
             config = _M.configure_plug('plugged.comment'),
         }
         use { 'kyazdani42/nvim-tree.lua',   -- Filesystem explorer
             after = 'which-key.nvim',
+            commit = "4bd919a", --For proper work with v0.7.2
             requires = { 'kyazdani42/nvim-web-devicons', opt = true },
             config = _M.configure_plug('plugged.nvim-tree'),
         }
@@ -96,6 +99,7 @@ local ret = packer.startup({
         }
         use { "akinsho/toggleterm.nvim", -- Terminal
             branch = 'main',
+            commit = "8cba5c2", --For proper work with v0.7.2
             after = 'which-key.nvim',
             config = _M.configure_plug('plugged.toggleterm'),
         }
