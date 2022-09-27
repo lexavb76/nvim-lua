@@ -52,7 +52,7 @@ local ret = packer.startup({
         }
         use { 'kyazdani42/nvim-tree.lua',   -- Filesystem explorer
             after = 'which-key.nvim',
-            commit = "4bd919a", --For proper work with v0.7.2
+            --commit = "4bd919a", --For proper work with v0.7.2
             requires = { 'kyazdani42/nvim-web-devicons', opt = true },
             config = _M.configure_plug('plugged.nvim-tree'),
         }
