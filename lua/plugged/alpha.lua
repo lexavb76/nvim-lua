@@ -43,12 +43,12 @@ dashboard.section.buttons.val = {
   button("SPC f o", "   Recently opened files"),
   button("SPC f p", "🏭  Find project"),
   button("SPC f f", "   Find file"),
-  button("SPC f w", "   Find word"),
+  button("SPC f g", "   Find word (live grep)"),
   --button("SPC s s", "  Open session"),
   button("SPC b",   "   New file (double: back to this menu)"),
   button("SPC e",   "   File explorer"),
   button("u",       "   Update plugins (Backup:".." '"..DATE_SORTABLE.."')", "<cmd>PackerSnapshot "..DATE_SORTABLE.."<cr>:PackerSync<cr>"),
-  button("q",       "   Quit", "<Cmd>qa<CR>"),
+  button("q",       "   Quit", "<cmd>qa<cr>"),
 }
 
 -- footer
@@ -111,5 +111,5 @@ else
         op = vim.tbl_extend('force', {noremap = true, silent = true}, op or {})
         vim.api.nvim_set_keymap(mod, lhs, rhs, op)
     end
-    map('n', '<leader>b', '<Cmd>Alpha<CR>')
+    map('n', '<leader>b', '<cmd>Alpha<cr>')
 end
