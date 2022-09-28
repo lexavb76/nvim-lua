@@ -1,6 +1,7 @@
 local pname = 'alpha'
 local try = require('user.utils').try
 local wait = 5
+DATE_SORTABLE = os.date "%Y_%m_%d.%H%M%S"
 local res, plug = try(wait, require, pname) --try wait sec to load the module
 if not res then
     print('Plugin "'..pname..'" is disabled.')
@@ -46,7 +47,7 @@ dashboard.section.buttons.val = {
   --button("SPC s s", "  Open session"),
   --button("SPC c n", "  New file"),
   button("SPC e",   "   File explorer"),
-  button("u",       "   Update plugins (:PackerSync)", "<cmd>PackerSync<cr>"),
+  button("u",       "   Update plugins (Backup:".." '"..DATE_SORTABLE.."')", "<cmd>PackerSnapshot "..DATE_SORTABLE.."<cr>:PackerSync<cr>"),
   button("q",       "   Quit", "<Cmd>qa<CR>"),
 }
 
