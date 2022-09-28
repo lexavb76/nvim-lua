@@ -45,7 +45,7 @@ dashboard.section.buttons.val = {
   button("SPC f f", "   Find file"),
   button("SPC f w", "   Find word"),
   --button("SPC s s", "  Open session"),
-  --button("SPC c n", "  New file"),
+  button("SPC b",   "   New file (double: back to this menu)"),
   button("SPC e",   "   File explorer"),
   button("u",       "   Update plugins (Backup:".." '"..DATE_SORTABLE.."')", "<cmd>PackerSnapshot "..DATE_SORTABLE.."<cr>:PackerSync<cr>"),
   button("q",       "   Quit", "<Cmd>qa<CR>"),
