@@ -135,6 +135,10 @@ local ret = packer.startup({
             requires = { 'kyazdani42/nvim-web-devicons', opt = true },
             config = _M.configure_plug('plugged.alpha'),
         }
+        use { "https://github.com/Shirk/vim-gas", -- Syntax highlighting with regexps for GNU Assembler (AT/T)
+            disable = false,
+            run = "ln -sfv gas.vim syntax/asm.vim", -- To use for default asm syntax
+        }
         -----------------------------------------------------------------------------------------------------------
         if PACKER_BOOTSTRAP then
             packer.sync()
