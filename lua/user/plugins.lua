@@ -24,6 +24,7 @@ local ret = packer.startup({
         --Have to use auxiliary namespace _M to get into the internal function scope. Local variables do not work.
         _M.install_font_cmd = 'mkdir -p '..font_location..' && '..DEFAULT_PACKAGES_ROOT..'/start/nerd-fonts/install.sh '..font_family
         use { 'ryanoasis/nerd-fonts',     -- It is not a plugin actually just fonts with glyphs
+            disable = true, -- Is maintained by start_nvim.sh script
             opt = false,
             tag = 'v*', -- The last tag, matching wildcard 'v*'
             -- You may install fonts manually:
