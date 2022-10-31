@@ -8,10 +8,10 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 -- The path that require uses to search for Lua files (add ~/.config/nvim/lua and some other directories):
 package.path = fn.stdpath('config')..'/lua/?.lua;/usr/share/lua/'..string.match(_VERSION,'%d+%.%d+')..'/?.lua;'..package.path
-package.path = '/usr/share/lua/'..string.match(_VERSION,'%d+%.%d+')..'/?.lua;'..package.path
-package.path = '/usr/share/lua/'..string.match(_VERSION,'%d+%.%d+')..'/?/init.lua;'..package.path
+package.path = package.path..';/usr/share/lua/'..string.match(_VERSION,'%d+%.%d+')..'/?.lua'
+package.path = package.path..';/usr/share/lua/'..string.match(_VERSION,'%d+%.%d+')..'/?/init.lua'
  --The path to libraries (is looked through if lua module is not found):
-package.cpath = '/usr/lib/x86_64-linux-gnu/lua/'..string.match(_VERSION,'%d+%.%d+')..'/?.so;'..package.cpath
+package.cpath = package.cpath..';/usr/lib/x86_64-linux-gnu/lua/'..string.match(_VERSION,'%d+%.%d+')..'/?.so'
 
 vim.cmd([[
     augroup user_config
