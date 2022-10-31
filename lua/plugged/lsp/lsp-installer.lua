@@ -1,5 +1,6 @@
 local pname = 'nvim-lsp-installer'
 local try = require('user.utils').try
+local sleep = require('user.utils').sleep
 local wait = 5
 local res, plug = try(wait, require, pname) --try wait sec to load the module
 if not res then
@@ -96,4 +97,5 @@ for _, server_name in pairs(inst_config.ensure_installed) do
     opts = vim.tbl_deep_extend('force', server.opts, opts)
     server.setup(opts)
     --TODO: it does not work with multiple servers in the list. Maybe waiting is needed !!!
+    --sleep(5) -- It did not help with multiple servers
 end

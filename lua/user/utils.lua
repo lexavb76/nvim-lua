@@ -1,5 +1,12 @@
 _M = {}
 
+---Sleeps sec seconds (may be float '1.5', for example)
+---@param sec number
+---@return boolean - operation status
+_M.sleep = function (sec)
+    return require('socket').sleep(sec)
+end
+
 ---Try sec seconds to do pcall for user_fn function
 ---@param sec number
 ---@param user_fn function with any vararg params

@@ -6,8 +6,12 @@ if fn.empty(fn.glob(install_path)) > 0 then
     print('Install packer...')
     PACKER_BOOTSTRAP = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
 end
--- Search in ~/.config/nvim/lua  directory:
-package.path = fn.stdpath('config')..'/lua/?.lua;'..package.path
+-- The path that require uses to search for Lua files (add ~/.config/nvim/lua and some other directories):
+package.path = fn.stdpath('config')..'/lua/?.lua;/usr/share/lua/'..string.match(_VERSION,'%d+%.%d+')..'/?.lua;'..package.path
+package.path = '/usr/share/lua/'..string.match(_VERSION,'%d+%.%d+')..'/?.lua;'..package.path
+package.path = '/usr/share/lua/'..string.match(_VERSION,'%d+%.%d+')..'/?/init.lua;'..package.path
+ --The path to libraries (is looked through if lua module is not found):
+package.cpath = '/usr/lib/x86_64-linux-gnu/lua/'..string.match(_VERSION,'%d+%.%d+')..'/?.so;'..package.cpath
 
 vim.cmd([[
     augroup user_config
