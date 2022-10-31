@@ -1,6 +1,6 @@
 local pname = 'nvim-lsp-installer'
 local try = require('user.utils').try
-local sleep = require('user.utils').sleep
+--local sleep = require('user.utils').sleep
 local wait = 5
 local res, plug = try(wait, require, pname) --try wait sec to load the module
 if not res then
@@ -11,9 +11,9 @@ end
 local inst_config =
 {
     ensure_installed = {
-        --"bashls",
-        --"clangd",
-        --"pyright",
+        "bashls",
+        "clangd",
+        "pyright",
         "sumneko_lua",
     },
 
@@ -87,15 +87,14 @@ plug.setup(inst_config)
 -- You must create file with concrete LSP server settings: "../plugged.lsp.settings.<server.name>"
 -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 
-local opts = {
-    on_attach    = require('plugged.lsp.handlers').on_attach,
-    capabilities = require('plugged.lsp.handlers').capabilities,
-}
+local opts = {}
 
 for _, server_name in pairs(inst_config.ensure_installed) do
+    opts[server_name] = {
+        on_attach    = require('plugged.lsp.handlers').on_attach,
+        capabilities = require('plugged.lsp.handlers').capabilities,
+    }
     local server = require("plugged.lsp.settings."..server_name)
-    opts = vim.tbl_deep_extend('force', server.opts, opts)
-    server.setup(opts)
-    --TODO: it does not work with multiple servers in the list. Maybe waiting is needed !!!
-    --sleep(5) -- It did not help with multiple servers
+    opts[server_name] = vim.tbl_deep_extend('force', server.opts, opts[server_name])
+    server.setup(opts[server_name])
 end
