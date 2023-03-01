@@ -54,6 +54,7 @@ local ret = packer.startup({
         use { 'kyazdani42/nvim-tree.lua',   -- Filesystem explorer
             after = 'which-key.nvim',
             --commit = "4bd919a", --For proper work with v0.7.2
+            commit = "1be1e17", --For proper work with v0.7.2
             requires = { 'kyazdani42/nvim-web-devicons', opt = true },
             config = _M.configure_plug('plugged.nvim-tree'),
         }
@@ -94,7 +95,9 @@ local ret = packer.startup({
             },
             config = _M.configure_plug('plugged.nvim-cmp'),
         }
-        use 'neovim/nvim-lspconfig' -- enable LSP
+        use { 'neovim/nvim-lspconfig', -- enable LSP
+            commit = "a035031",
+        }
         use { 'williamboman/nvim-lsp-installer', after = 'nvim-lspconfig', -- simple to use language server installer
             config = _M.configure_plug('plugged.lsp.lsp-installer'),
         }
