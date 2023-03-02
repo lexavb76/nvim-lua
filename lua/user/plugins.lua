@@ -131,6 +131,7 @@ local ret = packer.startup({
             config = _M.configure_plug('plugged.lualine'),
         }
         use { "lewis6991/gitsigns.nvim", -- Git visualisation
+            commit = "76b71f7", --For proper work with v0.7.2
             requires = { 'nvim-lua/plenary.nvim' },
             config = _M.configure_plug('plugged.gitsigns'),
         }
