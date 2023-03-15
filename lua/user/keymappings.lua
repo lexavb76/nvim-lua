@@ -8,6 +8,10 @@ vim.cmd([[
         autocmd VimLeavePre    *         !setxkbmap -option
         autocmd VimLeave       *         !setxkbmap -option grp:alt_shift_toggle
     augroup end
+    augroup when_exit
+        autocmd!
+        autocmd VimLeavePre    *         mksession!
+    augroup end
 ]])
 --
 -- Modes
@@ -48,12 +52,12 @@ map("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 map("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
 -- Navigate buffers
-map("n", "<A-j>", ":bnext<CR>", opts)
-map("n", "<A-k>", ":bprevious<CR>", opts)
+map("n", "<A-C-j>", ":bnext<CR>", opts)
+map("n", "<A-C-k>", ":bprevious<CR>", opts)
 
 -- Navigate tabs
-map("n", "<A-C-k>", ":tabnext<CR>", opts)
-map("n", "<A-C-j>", ":tabprevious<CR>", opts)
+map("n", "<A-k>", ":tabnext<CR>", opts)
+map("n", "<A-j>", ":tabprevious<CR>", opts)
 
 map("n", "<leader>s", ":setlocal spell!<CR>", opts) -- Toggle spell checking
 

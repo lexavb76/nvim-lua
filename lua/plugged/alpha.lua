@@ -40,11 +40,11 @@ dashboard.section.header.val = {
 
 -- buttons
 dashboard.section.buttons.val = {
+  button("s",       "   Open last session", "<cmd>so Session.vim<cr>"),
   button("SPC f o", "   Recently opened files"),
   button("SPC f p", "🏭  Find project"),
   button("SPC f f", "   Find file"),
   button("SPC f g", "   Find word (live grep)"),
-  --button("SPC s s", "  Open session"),
   button("SPC b",   "   New file (double: back to this menu)"),
   button("SPC e",   "   File explorer"),
   button("u",       "   Update plugins (Backup:".." '"..DATE_SORTABLE.."')", "<cmd>PackerSnapshot "..DATE_SORTABLE.."<cr>:PackerSync<cr>"),
