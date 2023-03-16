@@ -2,15 +2,15 @@ local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
 vim.cmd([[
+    augroup when_exit
+        autocmd!
+        autocmd VimLeavePre    *         mksession!
+    augroup end
     augroup caps_to_esc
         autocmd!
         autocmd VimEnter       *         lua vim.fn.system({'setxkbmap', '-option', 'caps:escape'})
         autocmd VimLeavePre    *         !setxkbmap -option
         autocmd VimLeave       *         !setxkbmap -option grp:alt_shift_toggle
-    augroup end
-    augroup when_exit
-        autocmd!
-        autocmd VimLeavePre    *         mksession!
     augroup end
 ]])
 --
