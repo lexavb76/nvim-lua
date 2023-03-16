@@ -6,12 +6,6 @@ vim.cmd([[
         autocmd!
         autocmd VimLeavePre    *         mksession!
     augroup end
-    augroup caps_to_esc
-        autocmd!
-        autocmd VimEnter       *         lua vim.fn.system({'setxkbmap', '-option', 'caps:escape'})
-        autocmd VimLeavePre    *         !setxkbmap -option
-        autocmd VimLeave       *         !setxkbmap -option grp:alt_shift_toggle
-    augroup end
 ]])
 --
 -- Modes
@@ -28,8 +22,8 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- Normal --
--- Toggle CapsLock to Esc mapping:
-map('n', '<Leader><Esc><Esc>', ':!bash -c "( setxkbmap -print | grep symbols | grep caps ) && setxkbmap -option || setxkbmap -option caps:escape; setxkbmap -option grp:alt_shift_toggle"<CR>', { noremap=true, silent=false })
+-- Toggle CapsLock to Esc mapping (works for Ubuntu 20.04 but does not work for 22.04):
+--map('n', '<Leader><Esc><Esc>', ':!bash -c "( setxkbmap -print | grep symbols | grep caps ) && setxkbmap -option || setxkbmap -option caps:escape; setxkbmap -option grp:alt_shift_toggle"<CR>', { noremap=true, silent=false })
 map('n', '<Leader>h', ':set hlsearch!<CR>', opts)
 map('n', ';', ':', { noremap=true, silent=false })
 map('n', '<Leader>e', ':Lexplore<CR>', opts) --Toggle file tree by default Netrw. May be overridden by plugins.
