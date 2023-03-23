@@ -14,7 +14,7 @@ local ret = packer.startup({
             require(plug)
         end
         use { 'lewis6991/impatient.nvim', -- Speed up modules loading time
-            config = _M.configure_plug('impatient'),
+            config = _M.configure_plug('plugged.impatient'),
         }
         use 'nvim-lua/popup.nvim'         -- An implementation of the Popup API from vim in Neovim
         use 'nvim-lua/plenary.nvim'       -- Useful lua functions used by lots of plugins
