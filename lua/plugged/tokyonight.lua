@@ -1,4 +1,14 @@
-require("tokyonight").setup({
+local pname = 'tokyonight'
+local try = require('user.utils').try
+local wait = 10
+local res, plug = try(wait, require, pname) --try wait sec to load the module
+if not res then
+    print('Plugin "'..pname..'" is disabled.')
+    return
+end
+
+-- setup function must go the last:
+plug.setup {
   -- your configuration comes here
   -- or leave it empty to use the default settings
   style = "storm", -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
@@ -32,7 +42,7 @@ require("tokyonight").setup({
   ---@param highlights Highlights
   ---@param colors ColorScheme
   on_highlights = function(highlights, colors) end,
-})
+}
 
 -- Load the colorscheme when plugin is loaded (wait up to 10 sec)
-require("user.utils").try(100, vim.cmd, [[colorscheme tokyonight]])
+require("user.utils").try(10, vim.cmd, [[colorscheme tokyonight]])
