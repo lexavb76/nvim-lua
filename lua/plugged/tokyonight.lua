@@ -35,4 +35,4 @@ require("tokyonight").setup({
 })
 
 -- Load the colorscheme when plugin is loaded (wait up to 10 sec)
-require("user.utils").try(10, vim.cmd, [[colorscheme tokyonight]])
+require("user.utils").try(100, vim.cmd, [[colorscheme tokyonight]])
