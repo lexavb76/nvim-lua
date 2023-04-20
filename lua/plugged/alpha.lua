@@ -40,7 +40,7 @@ dashboard.section.header.val = {
 
 -- buttons
 dashboard.section.buttons.val = {
-  button("s",       "   Open last session", "<cmd>so Session.vim<cr>"),
+  button("s",       "   Open last session", "<cmd>exe 'source '.stdpath('cache').'/Session.vim'<cr>"),
   button("SPC f o", "   Recently opened files"),
   button("SPC f p", "🏭  Find project"),
   button("SPC f f", "   Find file"),

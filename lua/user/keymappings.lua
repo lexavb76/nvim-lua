@@ -4,7 +4,7 @@ local opts = { noremap = true, silent = true }
 vim.cmd([[
     augroup when_exit
         autocmd!
-        autocmd VimLeavePre    *         mksession!
+        autocmd VimLeavePre    *         exe "mksession! ".stdpath('cache')."/Session.vim"
     augroup end
 ]])
 --
