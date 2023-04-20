@@ -47,7 +47,7 @@ dashboard.section.buttons.val = {
   button("SPC f g", "   Find word (live grep)"),
   button("SPC b",   "   New file (double: back to this menu)"),
   button("SPC e",   "   File explorer"),
-  button("u",       "   Update plugins (Backup:".." '"..DATE_SORTABLE.."')", "<cmd>PackerSnapshot "..DATE_SORTABLE.."<cr>:PackerSync<cr>"),
+  button("u",       "   Update plugins (Backup:".." '"..DATE_SORTABLE.."')", "<cmd>PackerSnapshot "..DATE_SORTABLE.."<cr>:PackerSync<cr>:exe 'edit '.stdpath('cache').'/packer.nvim'<cr>"),
   button("q",       "   Quit", "<cmd>qa<cr>"),
 }
 
