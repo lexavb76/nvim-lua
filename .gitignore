@@ -42,3 +42,4 @@ luac.out
 
 log.txt
 Session.vim
+.luarc.json
