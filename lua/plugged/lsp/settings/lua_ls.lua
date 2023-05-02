@@ -22,5 +22,5 @@ return {
             },
         },
     },
-    setup = require("lspconfig").sumneko_lua.setup,
+    setup = require("lspconfig").lua_ls.setup,
 }

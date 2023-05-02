@@ -95,10 +95,18 @@ local ret = packer.startup({
             config = _M.configure_plug('plugged.nvim-cmp'),
         }
         use { 'neovim/nvim-lspconfig', -- enable LSP
-            commit = "a035031", --Need to move to Mason to update
         }
-        use { 'williamboman/nvim-lsp-installer', after = 'nvim-lspconfig', -- simple to use language server installer
-            config = _M.configure_plug('plugged.lsp.lsp-installer'),
+        use { "williamboman/mason-lspconfig.nvim", --Simplifies to use language server installer
+            requires = {
+                { "williamboman/mason.nvim", --Allows you to easily manage external editor tooling such as LSP servers, DAP servers, linters, and formatters
+                    config = _M.configure_plug('plugged.lsp.mason'),
+                    after = "nvim-lspconfig",
+                    run = ":MasonUpdate", -- :MasonUpdate updates registry contents
+                    requires = "neovim/nvim-lspconfig", --enable LSP client plugin
+                },
+            },
+            after = "mason.nvim",
+            config = _M.configure_plug('plugged.lsp.mason-lspconfig'),
         }
         use { "akinsho/toggleterm.nvim", -- Terminal
             branch = 'main',
