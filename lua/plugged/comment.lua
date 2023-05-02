@@ -125,7 +125,8 @@ plug.setup {
     ---@type fun(ctx):string
     -- Treesitter hooks:
     --------------------------------------------------------------------------------
-    pre_hook = function(ctx) -- nil by default
+    pre_hook = nil, --Fot nvim > v0.7.2 waiting for fixes in ts_context_commentstring with per line commenting out
+    --[[pre_hook = function(ctx) -- nil by default
         local U = require "Comment.utils"
 
         local location = nil
@@ -139,6 +140,6 @@ plug.setup {
             key = ctx.ctype == U.ctype.line and "__default" or "__multiline",
             location = location,
         }
-    end,
+    end,]]
 }
 
