@@ -48,7 +48,13 @@ local ret = packer.startup({
         use { 'numToStr/Comment.nvim',      -- Easily comment stuff
             after = 'which-key.nvim',
             --commit = "4086630", --For proper work with v0.7.2
-            requires = 'JoosepAlviste/nvim-ts-context-commentstring',
+            requires = { 'JoosepAlviste/nvim-ts-context-commentstring',
+                config = function()
+                    require('ts_context_commentstring').setup {
+                        enable_autocmd = false,
+                    }
+                end
+            },
             config = _M.configure_plug('plugged.comment'),
         }
         use { 'kyazdani42/nvim-tree.lua',   -- Filesystem explorer

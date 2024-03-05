@@ -7,6 +7,7 @@ if not res then
     return
 end
 --------------------------------------------------------------------------------
+vim.g.skip_ts_context_commentstring_module = true
 --
 -- Keymappings:
 -- (which-key plugin style)
@@ -125,7 +126,8 @@ plug.setup {
     ---@type fun(ctx):string
     -- Treesitter hooks:
     --------------------------------------------------------------------------------
-    pre_hook = nil, --Fot nvim > v0.7.2 waiting for fixes in ts_context_commentstring with per line commenting out
+    --pre_hook = nil, --Fot nvim > v0.7.2 waiting for fixes in ts_context_commentstring with per line commenting out
+    pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
     --[[pre_hook = function(ctx) -- nil by default
         local U = require "Comment.utils"
 
